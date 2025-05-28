@@ -1,4 +1,4 @@
-Before running the Q1 Image Editor code, make sure you have installed these Python libraries
+Before running the Question 1 Image Editor Python code, make sure you have installed these Python libraries:
 pip install pillow opencv-python numpy tkinterdnd2
 
 Image Loading Might Fail
