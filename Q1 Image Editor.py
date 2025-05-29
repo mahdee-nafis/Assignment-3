@@ -1,4 +1,4 @@
-""" App Feature:
+""" Image Editor App Feature:
 1. Load an image
 2. Display it on the canvas
 3. Draw a rectangle to select a crop area
