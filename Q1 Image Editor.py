@@ -258,31 +258,6 @@ class CenteredImageEditorApp:
             self.set_status(f"Resized to {new_size[0]}x{new_size[1]}")
 
     def save_image(self):
-        if self.resized_image is not None:
-            path = filedialog.asksaveasfilename(
-                defaultextension=".png",
-                filetypes=[("PNG files", "*.png"),
-                           ("JPEG files", "*.jpg;*.jpeg"),
-                           ("BMP files", "*.bmp"),
-                           ("All files", "*.*")])
-            if path:
-                img = Image.fromarray(self.resized_image)
-                img.save(path)
-                messagebox.showinfo("Saved", f"Image saved to {path}")
-                self.set_status(f"Image saved: {os.path.basename(path)}")
-        else:
-            messagebox.showwarning("Warning", "No cropped/resized image to save.")
-            self.set_status("No cropped/resized image to save.")
-
-    def display_image(self, img, panel, text=""):
-        """ Conver image to a Tkinter-compatible image and display on a label"""
-        img_pil = Image.fromarray(img)
-        img_pil.thumbnail((300, 300), self.resample)
-        img_tk = ImageTk.PhotoImage(img_pil)
-        panel.config(image=img_tk, text=text)
-        panel.image = img_tk  # Keep reference
-
-    def save_image(self):
         """Save the currently resized (or cropped) image"""
         if self.resized_image is None:
             messagebox.showwarning("Warning", "No cropped or resized image to save.")
@@ -296,6 +271,14 @@ class CenteredImageEditorApp:
         if path:
             cv2.imwrite(path, cv2.cvtColor(self.resized_image, cv2.COLOR_RGB2BGR))
             self.set_status(f"Saved image: {os.path.basename(path)}")
+
+    def display_image(self, img, panel, text=""):
+        """ Conver image to a Tkinter-compatible image and display on a label"""
+        img_pil = Image.fromarray(img)
+        img_pil.thumbnail((300, 300), self.resample)
+        img_tk = ImageTk.PhotoImage(img_pil)
+        panel.config(image=img_tk, text=text)
+        panel.image = img_tk  # Keep reference
             
     def push_undo(self, img):
         if img is not None:
