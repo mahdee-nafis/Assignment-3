@@ -1,7 +1,7 @@
 """ App Feature:
 1. Load an image
 2. Display it on the canvas
-3. Draw a a rectangle to select a crop area
+3. Draw a rectangle to select a crop area
 4. Crop the selected area
 5. Resize the cropped image
 6. Undo/Redo changes
